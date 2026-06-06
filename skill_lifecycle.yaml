@@ -1,0 +1,49 @@
+name: html-to-pptx
+status: validated
+owner: Openclaw-Metis
+archetype: executor
+primary_structure_pattern: pipeline
+lifecycle:
+  created_at: 2026-06-04
+  last_validated_at: 2026-06-05
+  review_interval_days: 60
+  next_review_due: 2026-08-04
+support:
+  primary_hosts:
+    - agent-skills
+  secondary_hosts:
+    - cowork
+  unsupported_hosts: []
+risk:
+  external_side_effects: false
+  requires_secrets: false
+  data_sensitivity: low
+dependencies:
+  scripts: []
+  references:
+    - references/pptxgenjs-recipes.md
+    - references/migration-governance.md
+    - references/readiness_report.md
+registry:
+  namespace: "@agent-writing"
+  visibility: public
+  channel: stable
+  reviewers:
+    - platform
+  audit_log: references/readiness_report.md
+stewardship:
+  reviewers:
+    - platform
+  stale_after_days: 120
+  escalation:
+    stale: needs-maintenance
+    no_owner: orphaned
+portfolio:
+  overlaps_with: []
+  hands_off_to:
+    - pptx
+    - cc-designer
+  depends_on: []
+  supersedes: []
+  deprecated_by: null
+  shares_tool_contract_with: []

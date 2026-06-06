@@ -1,0 +1,93 @@
+{
+  "skill": "html-to-pptx",
+  "version": "2026.6.5",
+  "benchmark_metadata_required": [
+    "skill_version",
+    "git_commit",
+    "host",
+    "model",
+    "temperature",
+    "run_timestamp",
+    "grader_version"
+  ],
+  "evals": [
+    {
+      "id": "direct-zh-basic",
+      "language": "zh",
+      "trigger_class": "direct",
+      "coverage_tags": ["should-trigger", "happy-path"],
+      "prompt": "我有一份做好的 HTML 簡報，請幫我轉成可以在 PowerPoint 裡編輯的 PPTX。",
+      "expected_output": "載入 html-to-pptx 技能，先完整讀 HTML 逐頁列出元素，再用 pptxgenjs 逐頁重建成原生可編輯物件並做視覺 QA。",
+      "expectations": [
+        "明確選用 html-to-pptx 而非從零做簡報",
+        "先讀整份 HTML 再開始重建",
+        "輸出為可編輯的原生物件，不是截圖"
+      ]
+    },
+    {
+      "id": "direct-en-basic",
+      "language": "en",
+      "trigger_class": "direct",
+      "coverage_tags": ["should-trigger"],
+      "prompt": "Please convert my existing HTML slide deck into an editable PowerPoint (.pptx) file.",
+      "expected_output": "Trigger html-to-pptx: read the full HTML, map each element to native pptxgenjs objects, write the deck to output/, and run a soffice/pdftoppm visual QA pass.",
+      "expectations": [
+        "selects the html-to-pptx skill",
+        "rebuilds elements as native editable objects",
+        "performs a visual QA loop before delivering"
+      ]
+    },
+    {
+      "id": "indirect-zh-editable",
+      "language": "zh",
+      "trigger_class": "indirect",
+      "coverage_tags": ["should-trigger", "edge-case"],
+      "prompt": "這份 1920×1080 的 deck 是用 deck-stage 驅動的網頁投影片，我想讓 PM 之後能直接在 PowerPoint 改字，怎麼弄？",
+      "expected_output": "判定這是把既有 HTML deck 重建為可編輯 PPTX 的需求，套用 LAYOUT_WIDE 與 px÷144、px÷2 換算逐頁重建，並提醒版面接近但非像素一致。",
+      "expectations": [
+        "辨識出可編輯 PPTX 的隱含需求",
+        "採用 1920×1080 對應 LAYOUT_WIDE 的換算",
+        "說明像素一致性的限制"
+      ]
+    },
+    {
+      "id": "indirect-mixed-client",
+      "language": "mixed",
+      "trigger_class": "indirect",
+      "coverage_tags": ["should-trigger", "failure-mode"],
+      "prompt": "這份 HTML deck 要給客戶 editable PPT 版本，裡面中文很多也有兩張 chart，幫我搞定。",
+      "expected_output": "重建為原生 PPTX；不要覆寫 NODE_PATH，CJK 大標多留行高安全間距，圖表用 addChart 但不期待單點上色，並以實際算繪做 QA。",
+      "expectations": [
+        "不覆寫 NODE_PATH 直接 require",
+        "為 CJK 標題預留足夠行高空間",
+        "知道原生圖表無法逐點上色"
+      ]
+    },
+    {
+      "id": "negative-zh-fromscratch",
+      "language": "zh",
+      "trigger_class": "negative",
+      "coverage_tags": ["should-not-trigger", "overlap-neighbor"],
+      "prompt": "幫我從零做一份全新的 HTML 產品 prototype 簡報，先探索視覺風格。",
+      "expected_output": "不觸發 html-to-pptx，因為沒有要把既有 HTML 重建成 PPTX；建議改用 cc-designer 做 HTML 視覺草稿。",
+      "expectations": [
+        "不選用 html-to-pptx",
+        "handoff 給 cc-designer 或 pptx",
+        "說明沒有 HTML→PPTX 重建需求"
+      ]
+    },
+    {
+      "id": "negative-en-screenshot",
+      "language": "en",
+      "trigger_class": "negative",
+      "coverage_tags": ["should-not-trigger", "near-miss"],
+      "prompt": "Just take a screenshot of this webpage and save it as a PDF for me, nothing fancy.",
+      "expected_output": "Do not trigger html-to-pptx: this is a screenshot/PDF route, not a request to rebuild an HTML deck into an editable PowerPoint.",
+      "expectations": [
+        "does not select html-to-pptx",
+        "recognizes screenshot/PDF is the non-editable route",
+        "stays within the stated negative boundary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "skill": "html-to-pptx",
+  "version": "2026.6.5",
+  "description": "Release gates for paired with-skill vs baseline functional benchmark. Primary config must not regress against baseline.",
+  "gates": {
+    "min_pass_rate_delta": 0.0,
+    "require_non_negative_pass_rate": true,
+    "max_time_increase_seconds": 60,
+    "max_token_increase": 4000
+  },
+  "notes": "baseline = previous SKILL.md snapshot, not no-skill. Live paired benchmark required for publish stage."
+}

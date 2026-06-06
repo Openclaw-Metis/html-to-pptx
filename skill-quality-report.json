@@ -1,0 +1,34 @@
+{
+  "skill_name": "html-to-pptx",
+  "version": "2026.6.5",
+  "timestamp": "2026-06-05 UTC",
+  "authoritative_evidence": "references/readiness_report.md",
+  "draft_release_gate": "PASS",
+  "publish_release_gate": "BLOCKED (live paired functional benchmark pending)",
+  "description": "把現成的 HTML 簡報重建成可編輯的原生 PowerPoint（.pptx），用 pptxgenjs 逐頁畫成真正的 PPT 物件，不是截圖塞圖。",
+  "dimensions": {
+    "instruction_specificity": 30,
+    "robustness": 30,
+    "scope_boundaries": 30,
+    "trigger_clarity": 30
+  },
+  "applied_improvements": [
+    "移除會讓 require 失敗的 NODE_PATH 指引；改為不覆寫 NODE_PATH 直接 require",
+    "移除不存在的 soffice wrapper 路徑；QA 改直接呼叫預裝 soffice / pdftoppm",
+    "新增地雷：CJK 大標行高、區塊級 transparency 壓淡小字、原生圖表無法逐點上色、無邊框用 line:{type:none}、多停點漸層用堆疊色塊",
+    "字型 tofu 警語改為環境條件式",
+    "補齊語意區塊（role/decision_boundary/workflow+IO/output_contract/follow_through/examples）與 date-based version",
+    "frontmatter 移除被禁的 cowork 鍵與 > 折疊標量，改放 metadata",
+    "新增 evals.json / regression_gates.json / migration-governance.md / skill_lifecycle.yaml / readiness_report.md / pptxgenjs-recipes.md"
+  ],
+  "structural_checks": [
+    {"label": "draft release_gate", "status": "PASS"},
+    {"label": "format_check", "status": "PASS"},
+    {"label": "audit_structure", "status": "PASS"},
+    {"label": "audit_workflow_contract", "status": "PASS"},
+    {"label": "eval_coverage / eval_quality / golden_trigger_set", "status": "PASS"}
+  ],
+  "improvements": [
+    {"priority": "medium", "text": "publish 前補跑 with-skill vs 舊版 snapshot 的成對 functional benchmark"}
+  ]
+}
