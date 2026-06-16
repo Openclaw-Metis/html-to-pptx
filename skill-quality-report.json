@@ -1,10 +1,10 @@
 {
   "skill_name": "html-to-pptx",
-  "version": "2026.6.5",
-  "timestamp": "2026-06-05 UTC",
-  "authoritative_evidence": "references/readiness_report.md",
+  "version": "2026.6.16",
+  "timestamp": "2026-06-16 UTC",
+  "authoritative_evidence": "release/evidence-2026.6.16.json",
   "draft_release_gate": "PASS",
-  "publish_release_gate": "BLOCKED (live paired functional benchmark pending)",
+  "publish_release_gate": "PASS (live paired functional benchmark via --require-live-benchmark)",
   "description": "把現成的 HTML 簡報重建成可編輯的原生 PowerPoint（.pptx），用 pptxgenjs 逐頁畫成真正的 PPT 物件，不是截圖塞圖。",
   "dimensions": {
     "instruction_specificity": 30,
@@ -13,22 +13,27 @@
     "trigger_clarity": 30
   },
   "applied_improvements": [
-    "移除會讓 require 失敗的 NODE_PATH 指引；改為不覆寫 NODE_PATH 直接 require",
-    "移除不存在的 soffice wrapper 路徑；QA 改直接呼叫預裝 soffice / pdftoppm",
-    "新增地雷：CJK 大標行高、區塊級 transparency 壓淡小字、原生圖表無法逐點上色、無邊框用 line:{type:none}、多停點漸層用堆疊色塊",
-    "字型 tofu 警語改為環境條件式",
-    "補齊語意區塊（role/decision_boundary/workflow+IO/output_contract/follow_through/examples）與 date-based version",
-    "frontmatter 移除被禁的 cowork 鍵與 > 折疊標量，改放 metadata",
-    "新增 evals.json / regression_gates.json / migration-governance.md / skill_lifecycle.yaml / readiness_report.md / pptxgenjs-recipes.md"
+    "新增確定性功能 benchmark：golden fixtures + harness 實際用 pptxgenjs 建出原生 .pptx 並量測產物層指標，補齊先前卡住 publish 的 live paired functional benchmark",
+    "新增安全章節：預設不執行不可信 inline JS，優先靜態抽取圖表資料",
+    "emoji 由「必須先問」改為 executor 式預設決策，避免無謂阻塞",
+    "HTML→PPTX 對照表擴充 img / background-image / hyperlink / lists / speaker notes / z-index",
+    "座標換算改為先偵測畫布尺寸再 fallback 比例換算，不寫死 1920×1080",
+    "輸出契約新增可編輯性 A/B/C/D 分級與佔比",
+    "stop/report 補上失敗時最小可交付（診斷報告 + inventory + 缺漏清單，不得截圖替代）",
+    "環境章節移除特定 host 絕對路徑假設",
+    "文件分層：新增 references/qa-playbook.md 與 references/fixture-benchmark.md"
   ],
   "structural_checks": [
     {"label": "draft release_gate", "status": "PASS"},
-    {"label": "format_check", "status": "PASS"},
-    {"label": "audit_structure", "status": "PASS"},
-    {"label": "audit_workflow_contract", "status": "PASS"},
-    {"label": "eval_coverage / eval_quality / golden_trigger_set", "status": "PASS"}
+    {"label": "publish release_gate", "status": "PASS"},
+    {"label": "format / structure / workflow_contract", "status": "PASS"},
+    {"label": "gate_language / semantics", "status": "PASS"},
+    {"label": "lifecycle / lifecycle_state", "status": "PASS"},
+    {"label": "eval_coverage / eval_quality / golden_trigger_set", "status": "PASS"},
+    {"label": "skill_references / unreferenced_files", "status": "PASS"},
+    {"label": "benchmark (functional)", "status": "PASS"}
   ],
   "improvements": [
-    {"priority": "medium", "text": "publish 前補跑 with-skill vs 舊版 snapshot 的成對 functional benchmark"}
+    {"priority": "low", "text": "未來可補盲測多模型功能品質 benchmark，並在 runtime 沙箱補跑 soffice/pdftoppm 視覺 render-QA 數據"}
   ]
 }

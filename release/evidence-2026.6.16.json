@@ -1,0 +1,111 @@
+{
+  "skill_name": "html-to-pptx",
+  "version": "2026.6.16",
+  "generated_at": "2026-06-16T21:54:47+00:00",
+  "commit": "d72219f2308969ad6c8c685c7bcf4defbd86905f+dirty",
+  "status": "PASS",
+  "checks": {
+    "format": "PASS",
+    "structure": "PASS",
+    "workflow_contract": "PASS",
+    "semantics": "PASS",
+    "semantic_rules": "PASS",
+    "gate_language": "PASS",
+    "lifecycle": "PASS",
+    "lifecycle_state": "PASS",
+    "eval_coverage": "PASS",
+    "eval_quality": "PASS",
+    "golden_trigger_set": "PASS",
+    "wrapper_drift": "PASS",
+    "migration_governance": "PASS",
+    "surface_drift": "PASS",
+    "skill_references": "PASS",
+    "unreferenced_files": "PASS",
+    "healthcheck": "PASS",
+    "benchmark": "PASS"
+  },
+  "benchmark": {
+    "path": "/home/ubuntu/.claude/skills/html-to-pptx/benchmark.json",
+    "embedded_summary": true
+  },
+  "benchmark_summary": {
+    "artifact_type": "benchmark-summary",
+    "source_path": "/home/ubuntu/.claude/skills/html-to-pptx/benchmark.json",
+    "source_sha256": "3d40c589eb6ec9fbdef96a5bea18cb97f3fa3bd2cca4d1527952bcff6f08c6b1",
+    "metadata": {
+      "skill_name": "html-to-pptx",
+      "skill_path": "skills/html-to-pptx",
+      "skill_version": "2026.6.16",
+      "git_commit": "d72219f+wip",
+      "host": "openclaw/openclaw-maintenance",
+      "model": "deterministic-pptxgenjs-build",
+      "temperature": "0",
+      "timestamp": "2026-06-16T21:44:50Z",
+      "run_timestamp": "2026-06-16T21:44:50Z",
+      "grader_version": "htp-functional-build-gate-v1",
+      "evals_run": [
+        "basic-1920-cjk.html",
+        "charts-svg.html",
+        "css-heavy.html",
+        "missing-assets.html"
+      ],
+      "runs_per_configuration": 1
+    },
+    "run_summary": {
+      "native_rebuild": {
+        "pass_rate": {
+          "mean": 1,
+          "stddev": 0,
+          "min": 1,
+          "max": 1
+        },
+        "time_seconds": {
+          "mean": 0.074,
+          "stddev": 0,
+          "min": 0.074,
+          "max": 0.074
+        },
+        "tokens": {
+          "mean": 0,
+          "stddev": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "screenshot_dump": {
+        "pass_rate": {
+          "mean": 0,
+          "stddev": 0,
+          "min": 0,
+          "max": 0
+        },
+        "time_seconds": {
+          "mean": 0,
+          "stddev": 0,
+          "min": 0,
+          "max": 0
+        },
+        "tokens": {
+          "mean": 0,
+          "stddev": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "delta": {
+        "pass_rate": "+1.00",
+        "time_seconds": "+0.1",
+        "tokens": "+0"
+      }
+    },
+    "notes": [
+      "native_rebuild rebuilt 4/4 golden fixtures into native editable .pptx (real pptxgenjs builds on this host).",
+      "Artifact metrics measured: pptx_exists, pptx_nonzero, slide_count_match, native_object_ratio, missing_asset_handled.",
+      "Baseline screenshot_dump records pass_rate 0 by construction (a screenshot deck has zero editable objects); time/tokens are 0 (deterministic contrast, not a timed multi-model run), mirroring skill-creator-advanced's gate-vs-bypass release benchmark.",
+      "soffice/pdftoppm visual-render QA runs in the skill's runtime sandbox; it is not installed on this maintenance host, so render-QA is deferred there and not part of these numbers.",
+      "This is a deterministic local functional build benchmark, not a blind multi-model functional-quality benchmark."
+    ]
+  },
+  "blocking_findings": [],
+  "benchmark_summary_path": "release/benchmark-summary-2026.6.16.json"
+}

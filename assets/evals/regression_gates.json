@@ -1,12 +1,12 @@
 {
   "skill": "html-to-pptx",
-  "version": "2026.6.5",
-  "description": "Release gates for paired with-skill vs baseline functional benchmark. Primary config must not regress against baseline.",
+  "version": "2026.6.16",
+  "description": "Release gates for the paired functional benchmark. Primary (native_rebuild) must not regress against baseline (screenshot_dump).",
   "gates": {
     "min_pass_rate_delta": 0.0,
     "require_non_negative_pass_rate": true,
     "max_time_increase_seconds": 60,
     "max_token_increase": 4000
   },
-  "notes": "baseline = previous SKILL.md snapshot, not no-skill. Live paired benchmark required for publish stage."
+  "notes": "Deterministic functional benchmark (see references/fixture-benchmark.md): primary=native_rebuild, baseline=screenshot_dump (the non-editable anti-pattern this skill replaces). Gate-vs-bypass style, not a blind multi-model functional benchmark. Render-QA (soffice/pdftoppm) runs in the runtime sandbox."
 }

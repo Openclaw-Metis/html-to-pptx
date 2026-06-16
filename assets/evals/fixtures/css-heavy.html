@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CSS-heavy Deck</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; color: #1A1D24; }
+  .slide { width: 1920px; height: 1080px; padding: 112px; }
+  h2 { font-size: 64px; color: #24569D; margin-bottom: 56px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .card {
+    border-radius: 24px; padding: 48px;
+    background: linear-gradient(135deg, #24569D 0%, #D71259 100%);
+    color: #FFFFFF; box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+  }
+  .card h3 { font-size: 44px; margin-bottom: 16px; }
+  .card p { font-size: 32px; opacity: 0.9; }
+  .bar { margin-top: 64px; height: 48px; border-radius: 24px;
+         background: linear-gradient(90deg, #24569D 0%, #4F86D6 50%, #D71259 100%); }
+</style>
+</head>
+<body>
+  <section class="slide" data-slide="1">
+    <h2>Pillars</h2>
+    <div class="grid">
+      <div class="card"><h3>Speed</h3><p>Sub-second rebuilds.</p></div>
+      <div class="card"><h3>Fidelity</h3><p>Native editable objects.</p></div>
+      <div class="card"><h3>Scale</h3><p>15+ slide decks.</p></div>
+    </div>
+    <div class="bar"></div>
+  </section>
+  <section class="slide" data-slide="2">
+    <h2>Progress</h2>
+    <div class="grid">
+      <div class="card"><h3>Phase 1</h3><p>Done</p></div>
+      <div class="card"><h3>Phase 2</h3><p>In progress</p></div>
+      <div class="card"><h3>Phase 3</h3><p>Planned</p></div>
+    </div>
+  </section>
+</body>
+</html>

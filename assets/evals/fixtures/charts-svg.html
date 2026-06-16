@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SVG Charts Deck</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; color: #1A1D24; }
+  .slide { width: 1920px; height: 1080px; padding: 112px; }
+  h2 { font-size: 64px; color: #24569D; margin-bottom: 48px; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+  <section class="slide" data-slide="1">
+    <h2>Quarterly Revenue (Bar)</h2>
+    <svg width="1400" height="640" viewBox="0 0 1400 640" data-chart="bar">
+      <rect x="120" y="340" width="200" height="260" fill="#24569D"></rect>
+      <rect x="440" y="240" width="200" height="360" fill="#24569D"></rect>
+      <rect x="760" y="160" width="200" height="440" fill="#24569D"></rect>
+      <rect x="1080" y="80"  width="200" height="520" fill="#D71259"></rect>
+      <text x="220" y="630">Q1</text><text x="540" y="630">Q2</text>
+      <text x="860" y="630">Q3</text><text x="1180" y="630">Q4</text>
+    </svg>
+  </section>
+  <section class="slide" data-slide="2">
+    <h2>Revenue Mix (Donut)</h2>
+    <svg width="640" height="640" viewBox="0 0 640 640" data-chart="doughnut">
+      <circle cx="320" cy="320" r="240" fill="none" stroke="#24569D" stroke-width="120"
+              stroke-dasharray="900 600"></circle>
+      <circle cx="320" cy="320" r="240" fill="none" stroke="#D71259" stroke-width="120"
+              stroke-dasharray="600 900" stroke-dashoffset="-900"></circle>
+    </svg>
+  </section>
+</body>
+</html>

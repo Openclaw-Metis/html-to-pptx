@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>基礎繁中 Deck</title>
+<style>
+  :root { --brand: #24569D; --accent: #D71259; --ink: #1A1D24; }
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", Arial, sans-serif; color: var(--ink); }
+  .slide { width: 1920px; height: 1080px; padding: 112px; position: relative; }
+  .slide h1 { font-size: 96px; color: var(--brand); }
+  .slide h2 { font-size: 64px; color: var(--brand); }
+  .sub { font-size: 40px; color: var(--accent); margin-top: 24px; }
+  table { margin-top: 64px; border-collapse: collapse; font-size: 36px; }
+  th, td { border: 2px solid var(--brand); padding: 18px 36px; text-align: left; }
+  th { background: var(--brand); color: #FFFFFF; }
+  .page { position: absolute; right: 112px; bottom: 64px; font-size: 28px; color: #888; }
+</style>
+</head>
+<body>
+  <section class="slide" data-slide="1">
+    <h1>2026 年度營運回顧</h1>
+    <p class="sub">繁體中文簡報・全形標點測試「。、」</p>
+    <span class="page">1</span>
+  </section>
+  <section class="slide" data-slide="2">
+    <h2>三大關鍵指標</h2>
+    <table>
+      <tr><th>指標</th><th>去年</th><th>今年</th></tr>
+      <tr><td>營收（億）</td><td>12.4</td><td>18.9</td></tr>
+      <tr><td>毛利率</td><td>34%</td><td>41%</td></tr>
+      <tr><td>客戶數</td><td>820</td><td>1,160</td></tr>
+    </table>
+    <span class="page">2</span>
+  </section>
+  <section class="slide" data-slide="3">
+    <h1>謝謝聆聽</h1>
+    <p class="sub">Q&amp;A・聯絡：team@example.com</p>
+    <span class="page">3</span>
+  </section>
+</body>
+</html>
