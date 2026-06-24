@@ -1,6 +1,6 @@
 {
   "skill": "html-to-pptx",
-  "version": "2026.6.16",
+  "version": "2026.6.24",
   "description": "Release gates for the paired functional benchmark. Primary (native_rebuild) must not regress against baseline (screenshot_dump).",
   "gates": {
     "min_pass_rate_delta": 0.0,

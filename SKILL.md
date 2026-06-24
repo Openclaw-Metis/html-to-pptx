@@ -1,7 +1,7 @@
 ---
 name: html-to-pptx
 description: "把現成的 HTML 簡報重建成可編輯的原生 PowerPoint（.pptx），用 pptxgenjs 逐頁把文字、表格、圖表、形狀畫成真正的 PPT 物件，不是截圖塞圖。適用於 / Use when 使用者說「把 HTML 簡報轉成 PPTX」「匯出成 PPTX」「html 轉 pptx」「把這份 deck 或投影片變成 PowerPoint」「我要可以在 PowerPoint 編輯的版本」「convert my HTML deck to editable PowerPoint」。不適用於 / Do NOT use：從零做新簡報（用 pptx skill）、只做 HTML deck 或 prototype（用 cc-designer）、只要把網頁存成圖片或 PDF（那是截圖，不可編輯）。"
-version: 2026.6.16
+version: 2026.6.24
 license: MIT
 homepage: https://github.com/Openclaw-Metis/html-to-pptx
 metadata: {"author":"Openclaw-Metis","language":"zh-TW","category":"writing","icon":"SlideText","short-description":"HTML 簡報重建為可編輯原生 PPTX","openclaw":{"emoji":"📑"}}
@@ -46,9 +46,9 @@ Successful output:
 |---|---|
 | `<table>` | `slide.addTable(rows, opts)` 原生表格 |
 | flex / grid 卡片 | 絕對定位 `addText` + `addShape("roundRect")` |
-| SVG 甜甜圈圖 | `addChart(pres.charts.DOUGHNUT, data, {holeSize})` |
-| SVG 長條圖 | `addChart(pres.charts.BAR, data, {barDir:"col"})` |
-| SVG 折線 / 曲線圖 | `addChart(pres.charts.LINE, data, {lineSmooth:true})` |
+| SVG 甜甜圈圖 | `addChart(pres.ChartType.doughnut, data, {holeSize})` |
+| SVG 長條圖 | `addChart(pres.ChartType.bar, data, {barDir:"col"})` |
+| SVG 折線 / 曲線圖 | `addChart(pres.ChartType.line, data, {lineSmooth:true})` |
 | 橫條圖 / 進度條 | `addShape("rect")` 依數值算寬度 |
 | 多停點漸層條 | 多段純色 `rect` 依 stop 順序堆疊，兩端 `roundRect` 收圓角 |
 | CSS 漸層背景 | 純色底 + 半透明覆蓋矩形（pptxgenjs 不支援漸層） |
@@ -134,7 +134,7 @@ Step 6: 交付前確認
 - **無邊框用 `line:{ type:"none" }`（實測有效）**；`rectRadius` 單位是吋（18px 圓角 ≈ 0.125"）。
 - **大標的 CJK 行高要多抓空間。** 中文字框在 LibreOffice / PowerPoint 的實際行高比拉丁字高；用 px÷2 估字級沒問題，但 3 行以上的大標實高常逼近「字級pt × 1.3 × 行數」。把標題下方元素（裝飾條、副標）各留 0.15–0.25" 安全間距，並在 QA 用實際算繪確認，不要只靠公式抓位置。
 - **小字不要用區塊級 `transparency` 壓淡。** 對整個文字框設 `transparency` 會讓細筆畫（尤其數字、CJK）在算繪時變淡甚至消失；要淡色就直接給較淺的實心 hex（例如把白字改成淺粉），只在大面積色塊上才用區塊透明度。
-- **原生圖表無法逐點上色。** `addChart(LINE/BAR/...)` 的資料點 / 標記是整條同色；來源若用不同顏色強調特定點（例如折線上某幾個彩色圓點），改用角落文字標註或在圖表上另疊形狀，不要期待單點變色。
+- **原生圖表無法逐點上色。** `addChart(pres.ChartType.line/bar/...)` 的資料點 / 標記是整條同色；來源若用不同顏色強調特定點（例如折線上某幾個彩色圓點），改用角落文字標註或在圖表上另疊形狀，不要期待單點變色。
 
 ## Emoji 圖示處理（三種方法 + 取捨）
 

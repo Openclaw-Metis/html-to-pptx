@@ -87,7 +87,7 @@ function bloom(slide, cx, cy, r, pw, ph, colors, centerColor, centerDia) {
 
 ```js
 // 折線 / 平滑曲線（SVG line / curve 的對應）
-slide.addChart(pres.charts.LINE,
+slide.addChart(pres.ChartType.line,
   [{ name: "系列", labels: ["00","","04","","08"], values: [55,78,92,82,58] }],
   { x, y, w, h, chartColors: [BLUE], lineSize: 7, lineSmooth: true,
     lineDataSymbol: "none", showLegend: false, showTitle: false,
@@ -114,6 +114,7 @@ pptxgenjs 不支援漸層。垂直漸層條改用數段純色矩形依來源 sto
 | 折線圖端點無法各自上色 | 原生 chart 標記整條同色 | 改用角落文字標註強調高峰 / 谷底 |
 | QA 圖出現中文 □ 的疑慮 | 取決於 QA 容器字型；本次 LibreOffice 容器其實正常顯示繁中 | 把純字型 tofu 視為環境問題；容器正常顯示時即可據此判斷外觀 |
 | 標點不一致 | QA 後手改文字時把「。」打成 ASCII `.` | 保留全形標點，QA 清單納入標點檢查 |
+| `addChart(pres.charts.X)` 報錯或 undefined | pptxgenjs 3.0 起 `pptx.charts` namespace 已棄用 → 用 `pptx.ChartType` | 改用 `pptx.ChartType.x`（`bar` / `doughnut` / `line`）；shape 傳字串 `"roundRect"` 仍有效（= ShapeType 值，非棄用的 `pptx.shapes`） |
 
 ## 7. QA 指令
 

@@ -1,9 +1,18 @@
 # html-to-pptx 發版準備度報告
 
-- Skill version: 2026.6.16
-- Audit date: 2026-06-16
+- Skill version: 2026.6.24
+- Audit date: 2026-06-24（skill-optimizer pass；前次 2026-06-16）
 - Auditor: skill-creator-advanced release gate（`release_gate.py`）
 - Lifecycle status: validated
+
+## 2026.6.24 改版重點（skill-optimizer pass）
+
+由 `/skill-optimizer` 以「確定性靜態檢查 + 官方 API 查核 + 重跑 benchmark」優化；owner 於 2026-06-24 授權升版並重跑 benchmark。
+
+1. **修正棄用的 pptxgenjs chart API（確認 bug）**：SKILL.md 對照表與 `references/pptxgenjs-recipes.md` 原教 `addChart(pres.charts.DOUGHNUT/BAR/LINE, ...)`，但 `pptx.charts` namespace 自 pptxgenjs 3.0 起已棄用（[官方 deprecated docs](https://gitbrent.github.io/PptxGenJS/docs/deprecated/)），在 3.x / 4.x 會 throw `Cannot read properties of undefined`；skill 自己的 `run_benchmark.js` 本就用正確的 `pptx.ChartType.*`。已把 4 處教學改為 `pres.ChartType.doughnut/bar/line`，並於 recipes 事故對照表加一列防回歸。shape 維持字串 `"roundRect"`（= ShapeType 值，非棄用的 `pptx.shapes`）、colors 維持 raw hex，皆無需改。
+2. **重跑功能 benchmark 並升版**：於 **pptxgenjs 4.0.1** 重跑 `run_benchmark.js`，native_rebuild **4/4 PASS**（pass_rate 1.0，對 baseline screenshot_dump delta +1.00），`benchmark.json` 重新產生並 stamp 2026.6.24。版本一致化：`SKILL.md` / `evals.json` / `regression_gates.json` / `benchmark.json` / 本檔同步至 2026.6.24。
+
+> 本輪未動 routing evals（6 案覆蓋仍完整）、workflow、安全章節與 emoji / CJK 規則。Rollback：chart API 為 4 處 token replace + 1 列 incident 表，可逐項還原；版本戳與 benchmark 可重跑回填。
 
 ## 2026.6.16 改版重點
 
@@ -41,6 +50,8 @@ draft 與 publish 兩階段於 audit date 當日執行：
 | benchmark | PASS（functional） | PASS（`--require-live-benchmark`） |
 
 Overall: **PASS（draft 與 publish）**。
+
+> 2026-06-24 skill-optimizer pass 重跑：`release_gate.py --stage draft` 與 `--stage publish --require-live-benchmark --benchmark benchmark.json` 仍全數 PASS；功能 benchmark 於 pptxgenjs 4.0.1 重跑 native_rebuild 4/4（pass_rate 1.0）。
 
 ## 常見錯誤與排查
 

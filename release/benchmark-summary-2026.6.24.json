@@ -1,4 +1,7 @@
 {
+  "artifact_type": "benchmark-summary",
+  "source_path": "C:\\Users\\Oberon\\.claude\\skills\\html-to-pptx-main\\benchmark.json",
+  "source_sha256": "9620bec8cf535e42b74a7afe4475d607deddb8c164f79b371d644f6d24a5979a",
   "metadata": {
     "skill_name": "html-to-pptx",
     "skill_path": "skills/html-to-pptx",
@@ -18,59 +21,6 @@
     ],
     "runs_per_configuration": 1
   },
-  "runs": [
-    {
-      "fixture": "basic-1920-cjk.html",
-      "expected_slides": 3,
-      "actual_slides": 3,
-      "pptx_exists": true,
-      "pptx_nonzero": true,
-      "pptx_bytes": 73982,
-      "slide_count_match": true,
-      "native_objects": 9,
-      "native_object_ratio": 1,
-      "missing_asset_handled": true,
-      "pass": true
-    },
-    {
-      "fixture": "charts-svg.html",
-      "expected_slides": 2,
-      "actual_slides": 2,
-      "pptx_exists": true,
-      "pptx_nonzero": true,
-      "pptx_bytes": 94662,
-      "slide_count_match": true,
-      "native_objects": 4,
-      "native_object_ratio": 1,
-      "missing_asset_handled": true,
-      "pass": true
-    },
-    {
-      "fixture": "css-heavy.html",
-      "expected_slides": 2,
-      "actual_slides": 2,
-      "pptx_exists": true,
-      "pptx_nonzero": true,
-      "pptx_bytes": 57643,
-      "slide_count_match": true,
-      "native_objects": 15,
-      "native_object_ratio": 1,
-      "missing_asset_handled": true,
-      "pass": true
-    },
-    {
-      "fixture": "missing-assets.html",
-      "expected_slides": 1,
-      "actual_slides": 1,
-      "pptx_exists": false,
-      "pptx_nonzero": false,
-      "slide_count_match": true,
-      "native_object_ratio": 1,
-      "missing_asset_handled": true,
-      "stop_reported": "missing local asset: ./assets/hero-banner.png",
-      "pass": true
-    }
-  ],
   "run_summary": {
     "native_rebuild": {
       "pass_rate": {

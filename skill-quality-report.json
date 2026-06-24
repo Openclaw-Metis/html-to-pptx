@@ -1,8 +1,8 @@
 {
   "skill_name": "html-to-pptx",
-  "version": "2026.6.16",
-  "timestamp": "2026-06-16 UTC",
-  "authoritative_evidence": "release/evidence-2026.6.16.json",
+  "version": "2026.6.24",
+  "timestamp": "2026-06-24 UTC",
+  "authoritative_evidence": "release/evidence-2026.6.24.json",
   "draft_release_gate": "PASS",
   "publish_release_gate": "PASS (live paired functional benchmark via --require-live-benchmark)",
   "description": "把現成的 HTML 簡報重建成可編輯的原生 PowerPoint（.pptx），用 pptxgenjs 逐頁畫成真正的 PPT 物件，不是截圖塞圖。",
@@ -13,6 +13,7 @@
     "trigger_clarity": 30
   },
   "applied_improvements": [
+    "（2026.6.24 skill-optimizer pass）修正棄用的 pptxgenjs chart API：pres.charts.DOUGHNUT/BAR/LINE → pres.ChartType.doughnut/bar/line（pptx.charts 自 3.0 棄用，3.x/4.x 會 throw），並在 pptxgenjs 4.0.1 重跑 benchmark 4/4 PASS、升版 2026.6.24",
     "新增確定性功能 benchmark：golden fixtures + harness 實際用 pptxgenjs 建出原生 .pptx 並量測產物層指標，補齊先前卡住 publish 的 live paired functional benchmark",
     "新增安全章節：預設不執行不可信 inline JS，優先靜態抽取圖表資料",
     "emoji 由「必須先問」改為 executor 式預設決策，避免無謂阻塞",
